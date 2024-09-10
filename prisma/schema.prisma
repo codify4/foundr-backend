@@ -22,4 +22,46 @@ model User {
   username String @unique
   hash String
   hashedRt String?
+
+  page Page[]
+}
+
+model Page {
+  id Int @id @default(autoincrement()) @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  image String
+  bio String
+  socials SocialLink[]
+  projects Project[]
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+}
+
+model SocialLink {
+  id Int @id @default(autoincrement()) @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  link String
+  title String
+  image String?
+
+  pageId Int
+  page Page @relation(fields: [pageId], references: [id])
+}
+
+model Project {
+  id Int @id @default(autoincrement()) @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String
+  description String
+  url String
+
+  pageId Int
+  page Page @relation(fields: [pageId], references: [id])
 }
