@@ -51,4 +51,18 @@ export class SocialsService {
 
         return updatedSocialLink;
     }
+
+    async deleteSocialLink(id: number) {
+        const socialLink = await this.prisma.socialLink.findUnique({
+            where: { id },
+        });
+
+        if(!socialLink) throw new HttpException('Social link not found', 404);
+
+        await this.prisma.socialLink.delete({
+            where: { id },
+        });
+
+        return 'Social link deleted';
+    }
 }
