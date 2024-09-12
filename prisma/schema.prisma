@@ -46,8 +46,8 @@ model SocialLink {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  type String
-  link Socials
+  type Socials
+  link String
 
   pageId Int
   page Page @relation(fields: [pageId], references: [id])
