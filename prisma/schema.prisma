@@ -46,9 +46,8 @@ model SocialLink {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  link String
-  title String
-  image String?
+  type String
+  link Socials
 
   pageId Int
   page Page @relation(fields: [pageId], references: [id])
@@ -65,4 +64,13 @@ model Project {
 
   pageId Int
   page Page @relation(fields: [pageId], references: [id])
+}
+
+enum Socials {
+  twitter
+  instagram
+  facebook
+  linkedin
+  github
+  website
 }
