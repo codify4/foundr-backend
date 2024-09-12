@@ -1,8 +1,10 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards, ValidationPipe } from '@nestjs/common';
 import { SocialsService } from './socials.service';
 import { CreateSocialLinkDto } from './dto/create-social.dto';
 import { UpdateSocialLinkDto } from './dto/update-social.dto';
+import { AtGuard } from '../auth/guards/at.guard';
 
+@UseGuards(AtGuard)
 @Controller('socials')
 export class SocialsController {
     constructor(private socialsService: SocialsService) {}
