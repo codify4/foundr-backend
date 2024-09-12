@@ -2,8 +2,7 @@ import { Body, Controller, HttpCode, HttpStatus, Patch, UseGuards, ValidationPip
 import { AtGuard } from 'src/auth/guards/at.guard';
 import { GetCurrentUserId } from 'src/common/decorators/get-current-user-id.decorator';
 import { UserService } from './user.service';
-import { updateEmailDto } from './dto/update-email.dto';
-import { updateUsernameDto } from './dto/update-username.dto';
+import { updateUserDto } from './dto/update-email.dto';
 
 @UseGuards(AtGuard)
 @Controller('user')
@@ -11,14 +10,8 @@ export class UserController {
     constructor(private userService: UserService) {}
 
     @HttpCode(HttpStatus.OK)
-    @Patch('updateEmail')
-    updateEmail(@GetCurrentUserId() id: number, @Body(ValidationPipe) updateEmailDto: updateEmailDto) {
-        return this.userService.updateEmail(id, updateEmailDto.email);
-    }
-
-    @HttpCode(HttpStatus.OK)
-    @Patch('updateUsername')
-    updateUsername(@GetCurrentUserId() id: number, @Body(ValidationPipe) updateUsernameDto: updateUsernameDto) {
-        return this.userService.updateUsername(id, updateUsernameDto.username);
+    @Patch('updateUser')
+    updateUser(@GetCurrentUserId() id: number, @Body(ValidationPipe) updateUserDto: updateUserDto) {
+        return this.userService.updateUser(id, updateUserDto);
     }
 }
