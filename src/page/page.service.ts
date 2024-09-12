@@ -44,4 +44,10 @@ export class PageService {
 
         return updatedPage;
     }
+
+    async getPageByUserId(id: number) {
+        return this.prisma.page.findUnique({
+          where: { id },
+        });
+    }
 }

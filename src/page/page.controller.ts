@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, UseGuards, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, NotFoundException, Param, ParseIntPipe, Patch, Post, UseGuards, ValidationPipe } from '@nestjs/common';
 import { CreatePageDto } from './dto/create-page.dto';
 import { PageService } from './page.service';
 import { UpdatePageDto } from './dto/update-page.dto';
@@ -9,6 +9,11 @@ import { AtGuard } from '../auth/guards/at.guard';
 @Controller('page')
 export class PageController {
     constructor(private pageService: PageService) {}
+
+    @Get(':id')
+    getPage(@Param('id', ParseIntPipe) id: number) {
+      return this.pageService.getPageByUserId(id);
+    }
 
     @Post()
     createPage(@GetCurrentUserId() userId: number, @Body(ValidationPipe) createPageDto: CreatePageDto) {
