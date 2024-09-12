@@ -59,8 +59,9 @@ model Project {
   updatedAt DateTime @updatedAt
 
   name String
-  description String
+  oneLiner String
   url String
+  mrr String
 
   pageId Int
   page Page @relation(fields: [pageId], references: [id])
