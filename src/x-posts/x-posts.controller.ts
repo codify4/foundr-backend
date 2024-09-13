@@ -1,4 +1,11 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 
-@Controller('x-posts')
-export class XPostsController {}
+@Controller('posts')
+export class XPostsController {
+    constructor() {}
+
+    @Get()
+    getXPosts() {
+        return 'x-posts';
+    }
+}

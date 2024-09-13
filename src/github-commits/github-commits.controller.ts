@@ -1,4 +1,11 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 
-@Controller('github-commits')
-export class GithubCommitsController {}
+@Controller('commits')
+export class GithubCommitsController {
+    constructor() {}
+
+    @Get()
+    getGithubCommits() {
+        return 'github-commits';
+    }
+}
